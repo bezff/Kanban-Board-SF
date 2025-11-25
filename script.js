@@ -31,7 +31,7 @@ function initAdding() {
         if (text) {
             // По умолчанию добавляем в первую колонку "todo"
             createTaskElement(text, priority, 'todo');
-            taskInput.value = ''; // Очистка поля
+            taskInput.value = ''; 
             taskInput.focus();
         }
     };
@@ -46,7 +46,6 @@ function initAdding() {
 
 // Создание DOM элемента задачи
 function createTaskElement(text, priority, status) {
-    // Находим нужную колонку по ID (в HTML id колонок совпадают со статусами)
     const column = document.getElementById(status);
     
     const card = document.createElement('div');
@@ -66,11 +65,10 @@ function createTaskElement(text, priority, status) {
     // Кнопка удаления
     const deleteBtn = document.createElement('button');
     deleteBtn.className = 'delete-btn';
-    deleteBtn.innerHTML = '&times;'; // Символ крестика
+    deleteBtn.innerHTML = '&times;'; 
     deleteBtn.title = 'Удалить';
     
     deleteBtn.addEventListener('click', () => {
-        // Простая анимация перед удалением
         card.style.opacity = '0';
         card.style.transform = 'scale(0.9)';
         setTimeout(() => card.remove(), 200);
@@ -134,4 +132,5 @@ function initFilters() {
             });
         });
     });
+
 }
