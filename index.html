@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban Board Lite</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Подключаем шрифт Inter для красоты -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Шапка с фильтрами -->
+        <header>
+            <h1>Kanban Lite</h1>
+            <div class="filters">
+                <span>Фильтр:</span>
+                <button class="filter-btn active" data-priority="all">Все</button>
+                <button class="filter-btn" data-priority="high">Высокий</button>
+                <button class="filter-btn" data-priority="medium">Средний</button>
+                <button class="filter-btn" data-priority="low">Низкий</button>
+            </div>
+        </header>
+
+        <!-- Доска -->
+        <main class="kanban-board">
+            
+            <!-- Колонка 1: Нужно сделать -->
+            <div class="column" id="todo">
+                <h2 class="col-header to-do-header">Нужно сделать</h2>
+                <div class="task-list" data-status="todo">
+                    <!-- Задачи будут здесь -->
+                </div>
+            </div>
+
+            <!-- Колонка 2: В процессе -->
+            <div class="column" id="in-progress">
+                <h2 class="col-header in-progress-header">В процессе</h2>
+                <div class="task-list" data-status="in-progress"></div>
+            </div>
+
+            <!-- Колонка 3: Готово -->
+            <div class="column" id="done">
+                <h2 class="col-header done-header">Готово</h2>
+                <div class="task-list" data-status="done"></div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Если не используешь Node.js/Vite, раскомментируй строку ниже, а import в script.js удали -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script> -->
+    
+    <script type="module" src="script.js"></script>
+</body>
+</html>

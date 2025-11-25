@@ -1,0 +1,155 @@
+:root {
+    --bg-color: #f4f5f7;
+    --column-bg: #ebecf0;
+    --card-bg: #ffffff;
+    --text-color: #172b4d;
+    --accent-blue: #0052cc;
+    
+    /* Цвета приоритетов */
+    --p-high: #ff5630;
+    --p-medium: #ffab00;
+    --p-low: #36b37e;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+}
+
+.app-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header & Filters */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.filter-btn {
+    border: none;
+    background: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.filter-btn:hover {
+    background: #e6e6e6;
+}
+
+.filter-btn.active {
+    background: var(--accent-blue);
+    color: white;
+}
+
+/* Board Layout */
+.kanban-board {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+@media (max-width: 768px) {
+    .kanban-board {
+        flex-direction: column;
+    }
+    .column {
+        width: 100%;
+    }
+}
+
+/* Columns */
+.column {
+    flex: 1;
+    background: var(--column-bg);
+    border-radius: 8px;
+    padding: 10px;
+    min-height: 400px;
+}
+
+.col-header {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #5e6c84;
+    margin: 0 0 10px 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid transparent;
+}
+
+.to-do-header { border-color: var(--p-high); }
+.in-progress-header { border-color: var(--p-medium); }
+.done-header { border-color: var(--p-low); }
+
+/* Task List Area */
+.task-list {
+    min-height: 300px; /* Чтобы можно было бросить в пустую колонку */
+}
+
+/* Cards */
+.task-card {
+    background: var(--card-bg);
+    border-radius: 4px;
+    padding: 12px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    cursor: grab;
+    position: relative;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.task-card:active {
+    cursor: grabbing;
+    transform: rotate(2deg);
+}
+
+/* Приоритетный тег */
+.priority-tag {
+    display: inline-block;
+    width: 40px;
+    height: 6px;
+    border-radius: 3px;
+    margin-bottom: 8px;
+}
+
+.p-high { background-color: var(--p-high); }
+.p-medium { background-color: var(--p-medium); }
+.p-low { background-color: var(--p-low); }
+
+/* Текст задачи */
+.task-text {
+    display: block;
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+/* Редактирование (Input) */
+.edit-input {
+    width: 100%;
+    font-family: inherit;
+    font-size: 15px;
+    padding: 4px;
+    border: 2px solid var(--accent-blue);
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Скрытие при фильтрации */
+.hidden {
+    display: none;
+}

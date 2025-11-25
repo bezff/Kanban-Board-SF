@@ -1,0 +1,20 @@
+{
+  "name": "kanban-board-sf",
+  "version": "1.0.0",
+  "description": "Kanban Board with DnD and Filtering",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": ["kanban", "vanilla-js", "dnd"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^5.0.0"
+  },
+  "dependencies": {
+    "sortablejs": "^1.15.0"
+  }
+}
