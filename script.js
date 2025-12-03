@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
     loadState();
     renderBoardsList();
     
-    // Если есть доски, выбираем первую активную
     if (state.activeBoardId) {
         renderBoard(state.activeBoardId);
     } else {
@@ -22,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initDnD();
 });
 
-// --- Управление данными (State & LocalStorage) ---
+// --- Управление данными ---
 
 function loadState() {
     const savedData = localStorage.getItem('kanbanData');
@@ -37,7 +36,7 @@ function saveState() {
 
 function createBoard(name) {
     const newBoard = {
-        id: Date.now(), // Уникальный ID
+        id: Date.now(),
         name: name,
         tasks: []
     };
@@ -65,7 +64,7 @@ function addTask(text, priority) {
     const board = state.boards.find(b => b.id === state.activeBoardId);
     if (board) {
         const newTask = {
-            id: Date.now(), // уникальный id задачи
+            id: Date.now(),
             text,
             priority,
             status: 'todo'
@@ -87,7 +86,7 @@ function deleteTask(taskId) {
 
 function updateTaskStatus(taskId, newStatus) {
     const board = state.boards.find(b => b.id === state.activeBoardId);
-    const task = board.tasks.find(t => t.id == taskId); // == т.к. DOM атрибут строка
+    const task = board.tasks.find(t => t.id == taskId); 
     if (task) {
         task.status = newStatus;
         saveState();
@@ -116,7 +115,7 @@ function renderBoardsList() {
         li.addEventListener('click', () => {
             state.activeBoardId = board.id;
             saveState();
-            renderBoardsList(); // Обновить подсветку
+            renderBoardsList(); 
             renderBoard(board.id);
         });
         list.appendChild(li);
@@ -127,18 +126,14 @@ function renderBoard(boardId) {
     const board = state.boards.find(b => b.id === boardId);
     if (!board) return;
 
-    // Показываем интерфейс доски
     document.getElementById('boardTitle').textContent = board.name;
     document.getElementById('deleteBoardBtn').classList.remove('hidden');
     document.getElementById('filtersBlock').classList.remove('hidden');
     document.getElementById('controlsBlock').classList.remove('hidden');
     document.getElementById('boardContainer').classList.remove('hidden');
     document.getElementById('emptyState').classList.add('hidden');
-
-    // Очищаем колонки перед отрисовкой
     document.querySelectorAll('.task-list').forEach(el => el.innerHTML = '');
-
-    // Рендерим задачи
+    
     board.tasks.forEach(task => {
         createTaskElement(task);
     });
@@ -158,7 +153,7 @@ function createTaskElement(task) {
     
     const card = document.createElement('div');
     card.className = 'task-card';
-    card.setAttribute('data-id', task.id); // Важно для DnD и удаления
+    card.setAttribute('data-id', task.id); 
     card.setAttribute('data-priority', task.priority);
     
     if (isFilteredOut(task.priority)) card.classList.add('hidden');
@@ -227,20 +222,17 @@ function confirmDeleteTask(card, taskId) {
 // --- Инициализация событий и библиотек ---
 
 function initEvents() {
-    // Добавление доски
     document.getElementById('addBoardBtn').addEventListener('click', () => {
         const name = prompt('Введите название новой доски:');
         if (name) createBoard(name);
     });
 
-    // Удаление доски
     document.getElementById('deleteBoardBtn').addEventListener('click', () => {
         if (confirm('Удалить текущую доску?')) {
             deleteBoard(state.activeBoardId);
         }
     });
 
-    // Добавление задачи
     const addTaskHandler = () => {
         const input = document.getElementById('taskInput');
         const priority = document.getElementById('prioritySelect').value;
@@ -261,7 +253,7 @@ function initEvents() {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            renderBoard(state.activeBoardId); // Перерисовать с учетом фильтра
+            renderBoard(state.activeBoardId);
         });
     });
 }
@@ -277,10 +269,10 @@ function initDnD() {
                 const itemEl = evt.item;
                 const newStatus = evt.to.dataset.status;
                 const taskId = itemEl.dataset.id;
-                
-                // Обновляем статус в данных
+            
                 updateTaskStatus(taskId, newStatus);
             }
         });
     });
+
 }
