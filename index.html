@@ -3,59 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kanban Board SF</title>
+    <title>Kanban Pro</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="app-container">
-        <header>
-            <h1>Kanban SF</h1>
+    <div class="app-layout">
+        <!-- Боковая панель со списком досок -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Мои доски</h2>
+                <button id="addBoardBtn" title="Создать доску">+</button>
+            </div>
+            <ul id="boardList" class="board-list">
+                <!-- Список досок рендерится через JS -->
+            </ul>
+        </aside>
+
+        <!-- Основная область -->
+        <div class="main-content">
+            <header>
+                <div class="header-left">
+                    <h1 id="boardTitle">Выберите доску</h1>
+                    <button id="deleteBoardBtn" class="hidden" title="Удалить текущую доску">🗑️</button>
+                </div>
+                
+                <div class="filters hidden" id="filtersBlock">
+                    <span>Фильтр:</span>
+                    <button class="filter-btn active" data-priority="all">Все</button>
+                    <button class="filter-btn" data-priority="high">Высокий</button>
+                    <button class="filter-btn" data-priority="medium">Средний</button>
+                    <button class="filter-btn" data-priority="low">Низкий</button>
+                </div>
+            </header>
+
+            <!-- Форма добавления задачи (скрыта, если нет доски) -->
+            <div class="controls hidden" id="controlsBlock">
+                <input type="text" id="taskInput" placeholder="Новая задача..." autocomplete="off">
+                <select id="prioritySelect">
+                    <option value="high">Высокий</option>
+                    <option value="medium" selected>Средний</option>
+                    <option value="low">Низкий</option>
+                </select>
+                <button id="addTaskBtn">Добавить</button>
+            </div>
+
+            <!-- Доска Канбан -->
+            <main class="kanban-board hidden" id="boardContainer">
+                <div class="column">
+                    <h2 class="col-header to-do-header">Нужно сделать</h2>
+                    <div class="task-list" id="todo" data-status="todo"></div>
+                </div>
+
+                <div class="column">
+                    <h2 class="col-header in-progress-header">В процессе</h2>
+                    <div class="task-list" id="in-progress" data-status="in-progress"></div>
+                </div>
+
+                <div class="column">
+                    <h2 class="col-header done-header">Готово</h2>
+                    <div class="task-list" id="done" data-status="done"></div>
+                </div>
+            </main>
             
-            <!-- Фильтры -->
-            <div class="filters">
-                <span>Фильтр:</span>
-                <button class="filter-btn active" data-priority="all">Все</button>
-                <button class="filter-btn" data-priority="high">Высокий</button>
-                <button class="filter-btn" data-priority="medium">Средний</button>
-                <button class="filter-btn" data-priority="low">Низкий</button>
+            <!-- Заглушка, если нет досок -->
+            <div id="emptyState" class="empty-state">
+                <p>👈 Создайте новую доску в меню слева</p>
             </div>
-        </header>
-
-        <!-- Блок добавления новой задачи -->
-        <div class="controls">
-            <input type="text" id="taskInput" placeholder="Введите название задачи..." autocomplete="off">
-            <select id="prioritySelect">
-                <option value="high">Высокий</option>
-                <option value="medium" selected>Средний</option>
-                <option value="low">Низкий</option>
-            </select>
-            <button id="addBtn">Добавить задачу</button>
         </div>
-
-        <main class="kanban-board">
-            <!-- Колонка 1 -->
-            <div class="column">
-                <h2 class="col-header to-do-header">Нужно сделать</h2>
-                <div class="task-list" id="todo" data-status="todo"></div>
-            </div>
-
-            <!-- Колонка 2 -->
-            <div class="column">
-                <h2 class="col-header in-progress-header">В процессе</h2>
-                <div class="task-list" id="in-progress" data-status="in-progress"></div>
-            </div>
-
-            <!-- Колонка 3 -->
-            <div class="column">
-                <h2 class="col-header done-header">Готово</h2>
-                <div class="task-list" id="done" data-status="done"></div>
-            </div>
-        </main>
     </div>
     
     <script type="module" src="script.js"></script>
 </body>
-
 </html>
