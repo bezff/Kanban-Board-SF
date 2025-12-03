@@ -21,7 +21,7 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     height: 100vh;
-    overflow: hidden; /* Скролл будет внутри блоков */
+    overflow: hidden; 
 }
 
 .app-layout {
@@ -29,7 +29,6 @@ body {
     height: 100vh;
 }
 
-/* Sidebar */
 .sidebar {
     width: 260px;
     background: var(--sidebar-bg);
@@ -90,7 +89,6 @@ body {
     font-weight: 600;
 }
 
-/* Main Content */
 .main-content {
     flex: 1;
     display: flex;
@@ -125,7 +123,6 @@ header {
     border-color: var(--danger);
 }
 
-/* Отдельные элементы UI такие же, как раньше */
 .controls {
     background: white;
     padding: 15px;
@@ -140,12 +137,10 @@ header {
 #prioritySelect { padding: 10px; border: 1px solid #dfe1e6; border-radius: 4px; }
 #addTaskBtn { padding: 10px 20px; background: var(--accent-blue); color: white; border: none; border-radius: 4px; cursor: pointer; }
 
-/* Filters */
 .filters { display: flex; gap: 8px; }
 .filter-btn { padding: 6px 12px; border: none; background: #dfe1e6; cursor: pointer; border-radius: 4px; }
 .filter-btn.active { background: var(--text-color); color: white; }
 
-/* Kanban Board */
 .kanban-board {
     display: flex;
     gap: 20px;
@@ -160,7 +155,7 @@ header {
     padding: 10px;
     display: flex;
     flex-direction: column;
-    max-height: 80vh; /* Ограничение высоты колонки */
+    max-height: 80vh; 
 }
 
 .col-header {
@@ -177,12 +172,11 @@ header {
 
 .task-list {
     flex-grow: 1;
-    overflow-y: auto; /* Скролл внутри колонки */
+    overflow-y: auto; 
     min-height: 100px;
     padding-right: 5px;
 }
 
-/* Cards */
 .task-card {
     background: var(--card-bg);
     border-radius: 4px;
@@ -209,4 +203,5 @@ header {
 
 .hidden { display: none !important; }
 .empty-state { text-align: center; color: #888; font-size: 18px; margin-top: 50px; }
+
 .edit-input { width: 90%; padding: 4px; }
